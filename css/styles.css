@@ -1,0 +1,71 @@
+.carousel-container {
+    position: relative;
+    width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  .carousel-track {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .carousel-item {
+    flex: 0 0 calc(900px / 4); /* Adjust the width based on the number of posts you want to show */
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  .carousel-item img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .carousel-item h2 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .carousel-item p {
+    font-size: 14px;
+    margin: 0;
+  }
+  
+  .carousel-item a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    background-color: transparent;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .carousel-arrow-prev {
+    left: 20px;
+  }
+  
+  .carousel-arrow-next {
+    right: 20px;
+  }
+  
+
+.post-image {
+    width: 100px; /* Adjust the width as per your design */
+    height: auto; /* Adjust the height proportionally or as needed */
+    margin-bottom: 10px; /* Adjust the spacing as needed */
+  }
