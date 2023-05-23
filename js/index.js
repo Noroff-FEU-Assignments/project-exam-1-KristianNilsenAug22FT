@@ -40,6 +40,7 @@ function renderPageContent(page) {
   const container = document.getElementById('indexContent');
   container.appendChild(heading);
   container.appendChild(paragraph);
+  loadingText.style.display = 'none';
 }
 
 
@@ -98,6 +99,12 @@ function moveCarousel(direction, posts) {
   carouselTrack.style.transform = `translateX(${translateX}px)`;
 }
 
-fetchPosts();
+indexContent.textContent = 'Loading content...';
 
-fetchPageContent();
+fetchPosts()
+  .then(() => fetchPageContent())
+  .catch((error) => console.error('Error:', error))
+  .finally(() => {
+    // Remove loading text
+    indexContent.textContent = '';
+  });
