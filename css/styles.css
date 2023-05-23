@@ -122,7 +122,9 @@ button img {
 
 /* Index page */
 
-
+.loading-text {
+  font-size: 60px;
+}
 
 #indexContent {
   padding-top: 80px;
