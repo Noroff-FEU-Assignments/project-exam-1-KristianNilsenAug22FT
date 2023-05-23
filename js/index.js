@@ -110,5 +110,11 @@ fetchPosts()
     if (loadingElement) {
       indexContent.removeChild(loadingElement);
     }
+
+    const postLoadingElement = post.querySelector('.loading-text');
+    if (postLoadingElement) {
+      post.removeChild(postLoadingElement);
+    }
+
   });
 
