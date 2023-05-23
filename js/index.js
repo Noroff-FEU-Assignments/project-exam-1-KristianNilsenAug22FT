@@ -38,7 +38,7 @@ function renderPageContent(page) {
   paragraph.innerHTML = content.rendered;
 
   const container = document.getElementById('indexContent');
-  container.appendChild(heading);
+   container.appendChild(heading);
   container.appendChild(paragraph);
   loadingText.style.display = 'none';
 }
@@ -99,12 +99,16 @@ function moveCarousel(direction, posts) {
   carouselTrack.style.transform = `translateX(${translateX}px)`;
 }
 
-indexContent.textContent = 'Loading content...';
+
 
 fetchPosts()
   .then(() => fetchPageContent())
   .catch((error) => console.error('Error:', error))
   .finally(() => {
-    // Remove loading text
-    indexContent.textContent = '';
+    // Remove only the loading text
+    const loadingElement = indexContent.querySelector('.loading-text');
+    if (loadingElement) {
+      indexContent.removeChild(loadingElement);
+    }
   });
+
