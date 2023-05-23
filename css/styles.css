@@ -1,6 +1,94 @@
+/* Same on all pages */
+
+.menu-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #001bb3;
+  z-index: 1000;
+  text-transform: uppercase;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  
+}
+
+.nav-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+}
+
+.nav-menu li {
+  display: inline-block;
+  margin-right: 10px;
+ }
+
+.nav-menu li:last-child {
+  margin-right: 0;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 5px 10px;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  cursor: pointer;
+  
+  color: #ffffff;
+  font-size: 20px;
+  text-transform: uppercase;
+  text-size-adjust: 500px;
+}
+
+button img {
+  width: 40px;
+}
+
+@media (max-width: 800px) {
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #000000;
+    padding: 10px;
+  }
+
+  .nav-menu.active {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+
+
+/* Index page */
+
 .latestposts {
     position: relative;
-    width: 1100px;
+    max-width: 1100px;
     margin: 0 auto;
     overflow: hidden;
   }
@@ -18,7 +106,7 @@
   }
   
   .carousel-item {
-    flex: 0 0 calc(900px / 4); /* Adjust the width based on the number of posts you want to show */
+    width: 230px; 
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
@@ -74,11 +162,31 @@
   }
   
   .post-image {
-    width: 100px; /* Adjust the width as per your design */
-    height: auto; /* Adjust the height proportionally or as needed */
-    margin-bottom: 10px; /* Adjust the spacing as needed */
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
   }
   
+
+  @media (max-width: 1120px) {
+
+  
+
+    .carousel-container {
+     width: 665px;
+     
+    }
+
+    @media (max-width: 800px) {
+
+  
+      .carousel-container {
+       width: 215px;
+       
+      }
+    }
+
+  }
 
 
   /* Post page */
