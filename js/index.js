@@ -3,6 +3,17 @@ const carouselTrack = document.getElementById('carouselTrack');
 const prevButton = document.getElementById('carouselPrev');
 const nextButton = document.getElementById('carouselNext');
 
+async function fetchPageContent() {
+  try {
+    const response = await fetch('https://norwegiantechie.icu/wp-json/wp/v2/pages/35');
+    const page = await response.json();
+    renderPageContent(page);
+  } catch (error) {
+    console.error('Error fetching page content:', error);
+  }
+}
+
+
 let currentPosition = 0;
 const slideWidth = 900;
 const slidesToShow = 4;
@@ -16,6 +27,21 @@ async function fetchPosts() {
     console.error('Error fetching posts:', error);
   }
 }
+
+function renderPageContent(page) {
+  const { title, content } = page;
+
+  const heading = document.createElement('h2');
+  heading.textContent = title.rendered;
+
+  const paragraph = document.createElement('p');
+  paragraph.innerHTML = content.rendered;
+
+  const container = document.getElementById('indexContent');
+  container.appendChild(heading);
+  container.appendChild(paragraph);
+}
+
 
 function renderPosts(posts) {
   carouselTrack.innerHTML = '';
@@ -73,3 +99,5 @@ function moveCarousel(direction, posts) {
 }
 
 fetchPosts();
+
+fetchPageContent();

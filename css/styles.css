@@ -1,5 +1,9 @@
 /* Same on all pages */
 
+body {
+  font-family: "Bebas Neue", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .menu-bar {
   position: fixed;
   top: 0;
@@ -15,8 +19,7 @@
   align-items: center;
   justify-content: flex-start;
   padding: 10px;
-  
-}
+  }
 
 .nav-menu ul {
   list-style: none;
@@ -28,7 +31,12 @@
 .nav-menu li {
   display: inline-block;
   margin-right: 10px;
- }
+  font-size: 20px;
+}
+
+.nav-menu li:hover {
+  background-color: #000000;
+}
 
 .nav-menu li:last-child {
   margin-right: 0;
@@ -71,7 +79,36 @@ button img {
   }
 
   .nav-menu.active {
-    display: flex;
+    display: block;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu li:hover {
+    background-color: #10bebe;
+   }
+}
+
+@media (max-width: 484px) {
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 180px;
+    background-color: #000000;
+    padding: 10px;
+    box-sizing: border-box;
+    line-height: 40px;
+  }
+
+  .nav-menu.active {
+    display: block;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
@@ -83,8 +120,17 @@ button img {
 }
 
 
-
 /* Index page */
+
+#indexContent {
+  padding-top: 80px;
+  max-width: 900px;
+  margin: auto;
+}
+
+#indexContent p {
+  font-size: 20px;
+}
 
 .latestposts {
     position: relative;
@@ -170,21 +216,28 @@ button img {
 
   @media (max-width: 1120px) {
 
-  
+    #indexContent {
+      max-width: 665px;
+    }
 
     .carousel-container {
      width: 665px;
-     
     }
 
     @media (max-width: 800px) {
-
   
       .carousel-container {
        width: 215px;
-       
+      }
+
+      #indexContent {
+        max-width: 500px;
+        padding-left: 50px;
+        padding-right: 50px;
       }
     }
+
+
 
   }
 
