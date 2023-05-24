@@ -20,6 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <title>The boat blog</title>
+    <script defer src="./js/contact.js"></script>
 </head>
 <header class="menu-bar">
     <button class="menu-toggle">
@@ -36,6 +37,31 @@
   </header>
 <body>
     
+    <h1 class="contactheading">Contact us</h1>
+    <section class="contact-text-box">
+        <p></p>
+        <p></p>
+        <p class="paragraph-margin">If you have any questions or suggestions, do not hesitate to contact us!</p>
+        <form id="contact" action="form-success.php" method="GET">
+          <fieldset>
+            <legend>Fill in your details here</legend>
+            <label for="name">Your name</label>
+            <input type="text" name="name" id="name" class="form__input" />
+            <div class="input-error" id="nameError">We need your name</div>
+             <label for="email">Your email(must be a valid email)</label>
+            <input type="email" name="email" id="email" class="form__input" />
+            <div class="input-error" id="emailError">Please enter a valid email address</div>
+            <label for="phone">Subject</label>
+            <input type="text" name="phone" id="phone" class="form__input" />
+            <div class="input-error" id="phoneError">Phone number must be minimum 8 digits</div>
+          </fieldset>
+          <input type="submit" value="SUBMIT" class="submit" />
+        </form>
+      </section>
+      <div class="contactbackground">
+        <div class="contactimage"></div>
+      </div>
     <script defer src="/js/menu.js"></script>
+    </div>
 </body>
 </html>

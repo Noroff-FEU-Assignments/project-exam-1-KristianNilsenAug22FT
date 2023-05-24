@@ -1,4 +1,6 @@
-/* Same on all pages */
+
+
+/* Reused CSS (Same on all pages) */
 
 body {
   font-family: "Bebas Neue", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -10,6 +12,8 @@ body {
   left: 0;
   width: 100%;
   background-color: #001bb3;
+  border: black;
+  box-shadow: 0px 0px 6px 0px black;
   z-index: 1000;
   text-transform: uppercase;
 }
@@ -25,7 +29,6 @@ body {
   list-style: none;
   margin: 0;
   padding: 0;
-  
 }
 
 .nav-menu li {
@@ -56,7 +59,6 @@ body {
   height: 40px;
   margin-right: 10px;
   cursor: pointer;
-  
   color: #ffffff;
   font-size: 20px;
   text-transform: uppercase;
@@ -66,6 +68,14 @@ body {
 button img {
   width: 40px;
 }
+
+.input-error {
+  color: red;
+  font-size: smaller;
+  margin-bottom: 20px;
+  display: none;
+}
+
 
 @media (max-width: 800px) {
   .nav-menu {
@@ -136,26 +146,130 @@ button img {
   font-size: 20px;
 }
 
+.postsContainer {
+  display: none;
+}
+
 .latestposts {
-    position: relative;
-    max-width: 1100px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  overflow: hidden;
+}
   
+.carousel-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+  
+.carousel-track {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+  
+.carousel-item {
+  width: 230px; 
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+  
+.carousel-item img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+  
+.carousel-item h2 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+  
+.carousel-item p {
+  font-size: 14px;
+  margin: 0;
+}
+  
+.carousel-item a {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: auto;
+  border: black;
+  box-shadow: 0px 0px 2px 0px black;
+  border-radius: 5%;
+}
+  
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  background-color: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  outline: none;
+}
+  
+.carousel-arrow-prev {
+  left: 20px;
+}
+  
+.carousel-arrow-next {
+  right: 20px;
+}
+  
+.post-image {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+  
+ @media (max-width: 1120px) {
+
+  #indexContent {
+    max-width: 665px;
+    
+  }
+
   .carousel-container {
-    position: relative;
-    width: 900px;
-    margin: 0 auto;
-    overflow: hidden;
+    width: 665px;
+
   }
-  
-  .carousel-track {
-    display: flex;
-    transition: transform 0.3s ease-in-out;
+
+ @media (max-width: 800px) {
+      
+  .carousel {
+    display: none;
   }
-  
-  .carousel-item {
+      
+  #indexContent {
+    max-width: 500px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .loading-text {
+    font-size: 20px;
+  }
+
+  .postsContainer {
+    display: grid;
+    grid-column: -1/1;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .post-item {
+    margin: auto;
     width: 230px; 
     padding: 10px;
     box-sizing: border-box;
@@ -164,24 +278,14 @@ button img {
     flex-direction: column;
     justify-content: space-between;
   }
-  
-  .carousel-item img {
+
+  .post-item img {
     width: 100%;
     max-width: 100%;
     height: auto;
   }
-  
-  .carousel-item h2 {
-    font-size: 18px;
-    margin: 10px 0;
-  }
-  
-  .carousel-item p {
-    font-size: 14px;
-    margin: 0;
-  }
-  
-  .carousel-item a {
+
+  .postsContainer a {
     display: inline-block;
     padding: 5px 10px;
     background-color: #333;
@@ -189,119 +293,166 @@ button img {
     text-decoration: none;
     font-size: 14px;
     margin-top: auto;
+    border: black;
+    box-shadow: 0px 0px 2px 0px black;
+    border-radius: 5%;
+    margin-bottom: 50px;
   }
-  
-  .carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 24px;
-    background-color: transparent;
-    border: none;
-    color: #000;
-    cursor: pointer;
-    outline: none;
+ }
+
+ @media (max-width: 493px) {
+  .postsContainer {
+    grid-template-columns: repeat(1, 1fr);
   }
+ }
+}
+
+
+/* Posts page */
+ 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
   
-  .carousel-arrow-prev {
-    left: 20px;
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 70%;
+  max-height: 70%;
+}
+  
+.modal-content img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.modal-content {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+  
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* Contact page */
+
+.contact-text-box {
+  background-color: #ffffff;
+  text-align: left;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: #000000;
+  box-shadow: 1px 1px 10px 0px #000000 inset;
+  padding-bottom: 20px;
+  display: grid;
+  grid-column: -1/1;
+  grid-template-columns: repeat(2, 1fr);
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  margin: auto;
+  max-width: 800px;
+  margin-top: 10px;
+  
+}
+
+.submit {
+  background-color: #ffffff;
+  margin-top: 10px;
+  width: fit-content;
+  padding: 10px;
+  align-self: center;
+  text-decoration: none;
+  color: #000000;
+  font-size: larger;
+  border-radius: 5px;
+  border: 1px solid white;
+  box-shadow: 3px 3px 20px 0px #000000;
+  font-family: "Bebas Neue", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 25px;
+}
+
+.submit:hover {
+  background-color: #00e4d1;
+}
+
+.form__input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.paragraph-margin {
+  margin-right: 50px;
+}
+
+.contactheading {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 50px;
+}  
+
+.contactbackground {
+  width: 100%;
+  height: 400px;
+}
+
+.contactimage {
+  background-image: url(../images/contactimage.jpg);
+  margin-top: 50px;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  box-shadow: 1px 1px 10px 0px #000000 inset;
+}
+
+@media (max-width: 590px) {
+  .contactimage {
+    height: 200px;
   }
-  
-  .carousel-arrow-next {
-    right: 20px;
-  }
-  
-  .post-image {
-    width: 100px;
-    height: auto;
-    margin-bottom: 10px;
-  }
-  
 
-  @media (max-width: 1120px) {
-
-    #indexContent {
-      max-width: 665px;
-    }
-
-    .carousel-container {
-     width: 665px;
-    }
-
-    @media (max-width: 800px) {
-  
-      .carousel-container {
-       width: 215px;
-      }
-
-      #indexContent {
-        max-width: 500px;
-        padding-left: 50px;
-        padding-right: 50px;
-      }
-    }
-
-
-
-  }
-
-
-  /* Post page */
-
-
-  
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.9);
-  }
-  
-  .modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 70%;
-    max-height: 70%;
-  }
-  
-  .modal-content img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
+  .contact-text-box {
     display: block;
-    margin: 0 auto;
+    padding-top: 10px
   }
 
-  .modal-content {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
+  .contact-text-box {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: auto;
   }
-  
-  
-  
-  .close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
+
+  .paragraph-margin {
+    margin-bottom: 50px;
   }
-  
-  .close:hover,
-  .close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
+
+
+}

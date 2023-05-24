@@ -1,7 +1,8 @@
-const carouselContainer = document.getElementById('carouselContainer');
+const carouselContainer = document.querySelector(".carousel-container");
 const carouselTrack = document.getElementById('carouselTrack');
 const prevButton = document.getElementById('carouselPrev');
 const nextButton = document.getElementById('carouselNext');
+const postsContainer = document.getElementById('postsContainer');
 
 async function fetchPageContent() {
   try {
@@ -13,10 +14,10 @@ async function fetchPageContent() {
   }
 }
 
-
 let currentPosition = 0;
 const slideWidth = 900;
 const slidesToShow = 4;
+
 
 async function fetchPosts() {
   try {
@@ -38,23 +39,38 @@ function renderPageContent(page) {
   paragraph.innerHTML = content.rendered;
 
   const container = document.getElementById('indexContent');
-   container.appendChild(heading);
+  container.appendChild(heading);
   container.appendChild(paragraph);
   loadingText.style.display = 'none';
 }
 
 
 function renderPosts(posts) {
-  carouselTrack.innerHTML = '';
-
   const carouselItems = posts.map(post => createCarouselItem(post));
   carouselTrack.innerHTML = carouselItems.join('');
 
-  const postWidth = slideWidth / slidesToShow;
+  const postItems = posts.slice(0, 4).map(post => createPostItem(post));
+  postsContainer.innerHTML = postItems.join('');
+
+  const postWidth = slideWidth / Math.min(posts.length, slidesToShow);
   carouselTrack.style.width = `${postWidth * posts.length}px`;
 
   addEventListeners(posts);
 }
+
+function createPostItem(post) {
+  const imageUrl = extractImageUrl(post.content.rendered);
+
+  return `
+    <div class="post-item">
+      <img src="${imageUrl}" alt="${post.title.rendered} Image" class="post-image" />
+      <h2>${post.title.rendered}</h2>
+      <p>${post.excerpt.rendered}</p>
+      <a href="post.html?id=${post.id}">Read More</a>
+    </div>
+  `;
+}
+
 
 function createCarouselItem(post) {
   const imageUrl = extractImageUrl(post.content.rendered);
@@ -84,8 +100,8 @@ function addEventListeners(posts) {
 function moveCarousel(direction, posts) {
   const totalSlides = posts.length;
   const slidesPerPage = slidesToShow;
-  const maxPosition = Math.max(totalSlides - slidesPerPage, 0);
-  const increment = direction === 'prev' ? -1 : 1;
+  const maxPosition = Math.max(totalSlides);
+  const increment = direction === 'prev' ? -2 : 2;
 
   currentPosition += increment;
 
@@ -105,7 +121,7 @@ fetchPosts()
   .then(() => fetchPageContent())
   .catch((error) => console.error('Error:', error))
   .finally(() => {
-    // Remove only the loading text
+    
     const loadingElement = indexContent.querySelector('.loading-text');
     if (loadingElement) {
       indexContent.removeChild(loadingElement);
