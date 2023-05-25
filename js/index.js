@@ -3,6 +3,7 @@ const carouselTrack = document.getElementById('carouselTrack');
 const prevButton = document.getElementById('carouselPrev');
 const nextButton = document.getElementById('carouselNext');
 const postsContainer = document.getElementById('postsContainer');
+const loadingText = document.querySelector('.loading-text');
 
 async function fetchPageContent() {
   try {

@@ -31,37 +31,65 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="contact.html">Contact us</a></li>
             <li><a href="about.html">About us</a></li>
-            <li><a href="about.html">All blog posts</a></li>
+            <li><a href="allposts.html">All blog posts</a></li>
           </ul>
     </nav>
   </header>
 <body>
-    
-    <h1 class="contactheading">Contact us</h1>
     <section class="contact-text-box">
-        <p></p>
-        <p></p>
+    <div class="contactsection1">
+        <h1 class="contactheading">Contact</h1>
         <p class="paragraph-margin">If you have any questions or suggestions, do not hesitate to contact us!</p>
+    </div>
+      <div class="contactsection2">
         <form id="contact" action="form-success.php" method="GET">
           <fieldset>
             <legend>Fill in your details here</legend>
             <label for="name">Your name</label>
-            <input type="text" name="name" id="name" class="form__input" />
-            <div class="input-error" id="nameError">We need your name</div>
-             <label for="email">Your email(must be a valid email)</label>
+            <div class="input-container">
+                <input type="text" name="name" id="name" class="form__input" />
+                <div class="input-error" id="nameError">Your name</div>
+            </div>
+            <label for="email">Your email(must be a valid email)</label>
+            <div class="input-container">
             <input type="email" name="email" id="email" class="form__input" />
-            <div class="input-error" id="emailError">Please enter a valid email address</div>
-            <label for="phone">Subject</label>
-            <input type="text" name="phone" id="phone" class="form__input" />
-            <div class="input-error" id="phoneError">Phone number must be minimum 8 digits</div>
+            <div class="input-error" id="emailError">Invalid email</div>
+            </div>
+            <label for="subject">Subject</label>
+            <div class="input-container">
+                <input type="text" name="subject" id="subject" class="form__input" />
+                <div class="input-error" id="subjectError">15 letters or more</div>
+            </div>
+            <label for="phone">Message</label>
+            <div class="input-container">
+                <textarea type="text" name="message" id="message" class="form__input"></textarea>
+                <div class="input-error" id="messageError">25 letters or more</div>
+            </div>
           </fieldset>
           <input type="submit" value="SUBMIT" class="submit" />
         </form>
-      </section>
+      </div>
+    </section>
       <div class="contactbackground">
         <div class="contactimage"></div>
       </div>
-    <script defer src="/js/menu.js"></script>
     </div>
+    <footer>
+        <div class="footer-left">
+          &copy; 2023 Norwegiantechie
+        </div>
+        <div class="footer-center">
+          <a href="https://www.facebook.com" target="_blank">Facebook</a>
+          <a href="https://www.twitter.com" target="_blank">Twitter</a>
+        </div>
+        <div class="footer-right">
+          <a href="#" class="chat-link">Chat with us</a>
+          <div class="hoverbox">
+            <button>Start Chat Now</button>
+          </div>
+        </div>
+      </footer>
+    <script defer src="/js/menu.js"></script>
+    <script defer src="/js/chat.js"></script>
 </body>
 </html>

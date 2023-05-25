@@ -1,11 +1,12 @@
 const form = document.querySelector("#contact");
 const userName = document.querySelector("#name");
 const userNameError = document.querySelector("#nameError");
-const userPhone = document.querySelector("#phone");
-const userPhoneError = document.querySelector("#phoneError");
 const userEmail = document.querySelector("#email");
 const userEmailError = document.querySelector("#emailError");
-
+const userSubject = document.querySelector("#subject");
+const userSubjectError = document.querySelector("#subjectError");
+const userMessage = document.querySelector("#message");
+const userMessageError = document.querySelector("#messageError");
 
 function validateForm() {
   event.preventDefault();
@@ -16,17 +17,24 @@ function validateForm() {
     userNameError.style.display = "block";
   }
 
-  if (checkLength(userPhone.value, 7) === true) {
-    userPhoneError.style.display = "none";
-  } else {
-    userPhoneError.style.display = "block";
-  }
-
   if (validateEmail(userEmail.value) === true) {
     userEmailError.style.display = "none";
   } else {
     userEmailError.style.display = "block";
   }
+
+  if (checkLength(userSubject.value, 14) === true) {
+    userSubjectError.style.display = "none";
+  } else {
+    userSubjectError.style.display = "block";
+  }
+
+  if (checkLength(userMessage.value, 24) === true) {
+    userMessageError.style.display = "none";
+  } else {
+    userMessageError.style.display = "block";
+  }
+
 
 }
 
