@@ -116,11 +116,12 @@ footer {
   position: relative;
   text-decoration: none;
   color: #ffffff;
+  z-index: 1;
 }
 
-.chat-link {
-  position: relative;
-  z-index: 1;
+.chat-link:hover {
+  background-color: #000000;
+  
 }
 
 .hoverbox {
@@ -155,6 +156,10 @@ footer {
   font-size: 18px;
 }
 
+.hoverbox button:hover {
+  background-color: #00e4d1;
+}
+
 .chat-window {
   text-align: left;
   color: #000000;
@@ -165,10 +170,6 @@ footer {
   width: 175px;
   height: 50px;
 }
-
-
-
-
 
 @media (max-width: 800px) {
   .nav-menu {
