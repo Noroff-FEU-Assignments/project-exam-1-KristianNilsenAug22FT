@@ -8,9 +8,8 @@ const userSubjectError = document.querySelector("#subjectError");
 const userMessage = document.querySelector("#message");
 const userMessageError = document.querySelector("#messageError");
 
-function validateForm() {
+function validateForm(event) {
   event.preventDefault();
-  console.log('Form validation triggered.');
 
   if (checkLength(userName.value, 4) === true) {
     userNameError.style.display = "none";
@@ -35,23 +34,45 @@ function validateForm() {
   } else {
     userMessageError.style.display = "block";
   }
-  
+
   if (
     checkLength(userName.value, 4) &&
     validateEmail(userEmail.value) &&
     checkLength(userSubject.value, 14) &&
     checkLength(userMessage.value, 24)
   ) {
-    // Submit the form
-    form.submit();
+    // Create a new FormData object and append form data
+    const formData = new FormData(form);
+    formData.append("submit", "true");
 
-        // Show confirmation message
-        const confirmationMessage = document.createElement("p");
-        confirmationMessage.textContent = "Message submitted successfully.";
-        confirmationMessage.classList.add("confirmation-message");
-        form.appendChild(confirmationMessage);
-      }
-    }
+    // Send a POST request to the form action URL
+    fetch(form.action, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        // Handle the response (e.g., show confirmation message, redirect)
+        if (response.ok) {
+          // Show confirmation message
+          const confirmationMessage = document.createElement("p");
+          confirmationMessage.textContent = "Message submitted successfully.";
+          confirmationMessage.classList.add("confirmation-message");
+          form.appendChild(confirmationMessage);
+
+          // Redirect to the thank you page (replace "thank-you.html" with your desired thank you page URL)
+          window.location.href = "thankyou.html";
+        } else {
+          // Handle error response
+          console.log("Error submitting the form.");
+        }
+      })
+      .catch((error) => {
+        // Handle fetch error
+        console.log("Error submitting the form:", error);
+      });
+  }
+}
+
   
 
 
