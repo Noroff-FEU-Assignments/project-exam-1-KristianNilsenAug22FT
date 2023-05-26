@@ -101,7 +101,7 @@ function createCarouselItem(post) {
       <img src="${imageUrl}" alt="${altText}" class="post-image" />
       <h2>${post.title.rendered}</h2>
       <p>${excerpt}</p>
-      <a href="post.html?id=${post.id}">Read More</a>
+      <a href="post.html?id=${post.id}" class="readmorebutton">Read More</a>
     </div>
   `;
 }

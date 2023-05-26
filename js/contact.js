@@ -11,7 +11,7 @@ const userMessageError = document.querySelector("#messageError");
 function validateForm() {
   event.preventDefault();
 
-  if (checkLength(userName.value, 0) === true) {
+  if (checkLength(userName.value, 4) === true) {
     userNameError.style.display = "none";
   } else {
     userNameError.style.display = "block";
@@ -34,9 +34,25 @@ function validateForm() {
   } else {
     userMessageError.style.display = "block";
   }
+  
+  if (
+    checkLength(userName.value, 4) &&
+    validateEmail(userEmail.value) &&
+    checkLength(userSubject.value, 14) &&
+    checkLength(userMessage.value, 24)
+  ) {
+    // Submit the form
+    form.submit();
 
+        // Show confirmation message
+        const confirmationMessage = document.createElement("p");
+        confirmationMessage.textContent = "Message submitted successfully.";
+        confirmationMessage.classList.add("confirmation-message");
+        form.appendChild(confirmationMessage);
+      }
+    }
+  
 
-}
 
 form.addEventListener("submit", validateForm);
 
