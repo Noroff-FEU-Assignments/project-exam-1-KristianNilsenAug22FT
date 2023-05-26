@@ -24,7 +24,22 @@ async function fetchPosts() {
   try {
     const response = await fetch('https://norwegiantechie.icu/wp-json/wp/v2/posts?_embed');
     const posts = await response.json();
-    renderPosts(posts);
+
+    const updatedPosts = posts.map((post) => {
+      let imageUrl = '';
+      let altText = '';
+
+      // Check if the post has a featured image
+      if (post._embedded['wp:featuredmedia']) {
+        const media = post._embedded['wp:featuredmedia'][0];
+        imageUrl = media.source_url;
+        altText = media.alt_text;
+      }
+
+      return { ...post, featured_image: imageUrl, alt_text: altText };
+    });
+
+    renderPosts(updatedPosts);
   } catch (error) {
     console.error('Error fetching posts:', error);
   }
@@ -60,14 +75,13 @@ function renderPosts(posts) {
 }
 
 function createPostItem(post) {
-  const imageUrl = extractImageUrl(post.content.rendered);
-  const altText = extractAltText(post.content.rendered);
+  const imageUrl = post.featured_image;
+  const altText = post.alt_text;
   const excerpt = post.excerpt.rendered.substring(0, excerptLength) + " [...]";
-
 
   return `
     <div class="post-item">
-      <img src="${imageUrl}" alt="${altText} Image" class="post-image" />
+      <img src="${imageUrl}" alt="${altText}" class="post-image" />
       <h2>${post.title.rendered}</h2>
       <p>${excerpt}</p>
       <a href="post.html?id=${post.id}" class="readmorebutton">Read More</a>
@@ -76,14 +90,15 @@ function createPostItem(post) {
 }
 
 
+
 function createCarouselItem(post) {
-  const imageUrl = extractImageUrl(post.content.rendered);
-  const altText = extractAltText(post.content.rendered);
+  const imageUrl = post.featured_image;
+  const altText = post.alt_text;
   const excerpt = post.excerpt.rendered.substring(0, excerptLength) + " [...]";
 
   return `
     <div class="carousel-item">
-      <img src="${imageUrl}" alt="${altText} Image" class="post-image" />
+      <img src="${imageUrl}" alt="${altText}" class="post-image" />
       <h2>${post.title.rendered}</h2>
       <p>${excerpt}</p>
       <a href="post.html?id=${post.id}">Read More</a>
