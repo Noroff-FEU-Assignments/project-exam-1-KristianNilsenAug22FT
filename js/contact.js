@@ -10,6 +10,7 @@ const userMessageError = document.querySelector("#messageError");
 
 function validateForm() {
   event.preventDefault();
+  console.log('Form validation triggered.');
 
   if (checkLength(userName.value, 4) === true) {
     userNameError.style.display = "none";
