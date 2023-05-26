@@ -14,34 +14,51 @@ async function fetchPost() {
 }
 
 function renderPost(post) {
-    document.title = post.title.rendered;
-    postContent.innerHTML = `
-      <h2>${post.title.rendered}</h2>
-      <div>${post.content.rendered}</div>
-    `;
-  
-    // Extract the image URL from the API response
-    const imageUrlMatch = post.content.rendered.match(/src="([^"]+)"/);
-    if (imageUrlMatch && imageUrlMatch.length > 1) {
-      const imageUrl = imageUrlMatch[1];
-  
-      // Add event listener to the post image
-      const postImage = postContent.querySelector('img');
-      postImage.addEventListener('click', () => openModal(imageUrl));
-    }
+  document.title = post.title.rendered;
+
+  const imageUrlMatch = post.content.rendered.match(/src="([^"]+)"/);
+  if (imageUrlMatch && imageUrlMatch.length > 1) {
+    const imageUrl = imageUrlMatch[1];
+    const altTextMatch = post.content.rendered.match(/alt="([^"]+)"/);
+    const altText = altTextMatch && altTextMatch.length > 1 ? altTextMatch[1] : '';
+
+    const imageElement = document.createElement('img');
+    imageElement.src = imageUrl;
+    imageElement.alt = altText;
+    imageElement.addEventListener('click', () => openModal(imageUrl, altText));
+
+    const titleElement = document.createElement('h2');
+    titleElement.textContent = post.title.rendered;
+
+    postContent.innerHTML = '';
+    postContent.appendChild(titleElement);
+    postContent.appendChild(imageElement);
   }
+
+  const contentElement = document.createElement('div');
+  contentElement.className = 'posttext';
+  contentElement.innerHTML = post.content.rendered;
+  postContent.appendChild(contentElement);
+}
+
+
+
+
   
 
-function openModal(imageUrl) {
-  modal.style.display = 'block';
-  modalImage.src = imageUrl;
-}
+  function openModal(imageUrl, altText) {
+    modal.style.display = 'block';
+    modalImage.src = imageUrl;
+    modalImage.alt = altText;
+    
+  }
+  
 
 function closeModal() {
   modal.style.display = 'none';
 }
 
-// Close the modal when the user clicks outside the image
+
 window.addEventListener('click', (event) => {
   if (event.target === modal) {
     closeModal();

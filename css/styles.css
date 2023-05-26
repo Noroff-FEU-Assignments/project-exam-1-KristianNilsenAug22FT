@@ -14,7 +14,7 @@ body {
   background-color: #001bb3;
   border: black;
   box-shadow: 0px 0px 6px 0px black;
-  z-index: 1000;
+  z-index: 100;
   text-transform: uppercase;
 }
 
@@ -169,6 +169,37 @@ footer {
 .chatinput {
   width: 175px;
   height: 50px;
+}
+
+.post-item {
+  margin: auto;
+  width: 450px; 
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.post-item img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.readmorebutton {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: auto;
+  border: black;
+  box-shadow: 0px 0px 2px 0px black;
+  border-radius: 5%;
+  margin-bottom: 50px;
 }
 
 @media (max-width: 800px) {
@@ -341,7 +372,7 @@ footer {
 
   }
 
- @media (max-width: 800px) {
+ @media (max-width: 937px) {
       
   .carousel {
     display: none;
@@ -380,19 +411,7 @@ footer {
     height: auto;
   }
 
-  .postsContainer a {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #333;
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-    margin-top: auto;
-    border: black;
-    box-shadow: 0px 0px 2px 0px black;
-    border-radius: 5%;
-    margin-bottom: 50px;
-  }
+
  }
 
  @media (max-width: 493px) {
@@ -404,7 +423,19 @@ footer {
 
 
 /* Posts page */
- 
+
+
+#postContent {
+  margin-top: 60px;
+  text-align: center;
+}
+
+#postContent img {
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+}
+
 .modal {
   display: none;
   position: fixed;
@@ -422,23 +453,12 @@ footer {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 70%;
-  max-height: 70%;
+  max-width: 85%;
 }
   
-.modal-content img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
 .modal-content {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
+  width: 900px;
+  
 }
 
 .close {
@@ -449,6 +469,7 @@ footer {
   font-size: 40px;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 60px;
 }
   
 .close:hover,
@@ -456,6 +477,22 @@ footer {
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
+}
+
+#postContent div img {
+  display: none;
+}
+
+.posttext {
+  padding-right: 100px;
+  padding-left: 100px;
+  text-align: left;
+}
+
+@media (max-width: 690px) {
+  .posttext {
+    padding: 0px;
+  }
 }
 
 
@@ -607,4 +644,44 @@ footer {
   }
 
 
+}
+
+/* All posts page */
+
+#allPostsContainer {
+  display: grid;
+  grid-column: -1/1;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 100px;
+  box-shadow: 0px 0px 9px 0px black inset;
+  margin-bottom: 100px;
+}
+
+.show-more-button {
+  background-color: #ffffff;
+  padding: 10px;
+  color: #000000;
+  font-size: 40px;
+  border-radius: 5px;
+  width: 200px;
+  border: 1px solid white;
+  box-shadow: 3px 3px 10px 0px #000000;
+  font-family: "Bebas Neue", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 100px;
+}
+
+.showmorecontainer {
+  text-align: center;
+}
+
+@media (max-width: 1385px) {
+  #allPostsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  #allPostsContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

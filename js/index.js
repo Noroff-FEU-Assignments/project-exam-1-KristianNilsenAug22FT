@@ -18,7 +18,7 @@ async function fetchPageContent() {
 let currentPosition = 0;
 const slideWidth = 900;
 const slidesToShow = 4;
-
+const excerptLength = 100;
 
 async function fetchPosts() {
   try {
@@ -61,13 +61,16 @@ function renderPosts(posts) {
 
 function createPostItem(post) {
   const imageUrl = extractImageUrl(post.content.rendered);
+  const altText = extractAltText(post.content.rendered);
+  const excerpt = post.excerpt.rendered.substring(0, excerptLength) + " [...]";
+
 
   return `
     <div class="post-item">
-      <img src="${imageUrl}" alt="${post.title.rendered} Image" class="post-image" />
+      <img src="${imageUrl}" alt="${altText} Image" class="post-image" />
       <h2>${post.title.rendered}</h2>
-      <p>${post.excerpt.rendered}</p>
-      <a href="post.html?id=${post.id}">Read More</a>
+      <p>${excerpt}</p>
+      <a href="post.html?id=${post.id}" class="readmorebutton">Read More</a>
     </div>
   `;
 }
@@ -75,12 +78,14 @@ function createPostItem(post) {
 
 function createCarouselItem(post) {
   const imageUrl = extractImageUrl(post.content.rendered);
+  const altText = extractAltText(post.content.rendered);
+  const excerpt = post.excerpt.rendered.substring(0, excerptLength) + " [...]";
 
   return `
     <div class="carousel-item">
-      <img src="${imageUrl}" alt="${post.title.rendered} Image" class="post-image" />
+      <img src="${imageUrl}" alt="${altText} Image" class="post-image" />
       <h2>${post.title.rendered}</h2>
-      <p>${post.excerpt.rendered}</p>
+      <p>${excerpt}</p>
       <a href="post.html?id=${post.id}">Read More</a>
     </div>
   `;
@@ -91,6 +96,13 @@ function extractImageUrl(content) {
   const doc = parser.parseFromString(content, 'text/html');
   const imageElement = doc.querySelector('img');
   return imageElement ? imageElement.getAttribute('src') : '';
+}
+
+function extractAltText(content) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(content, 'text/html');
+  const imageElement = doc.querySelector('img');
+  return imageElement ? imageElement.getAttribute('alt') : '';
 }
 
 function addEventListeners(posts) {

@@ -28,7 +28,7 @@ startChatButton.addEventListener('click', function() {
       <div class="message incoming">Hello, how can we assist you?</div>
     </div>
     <textarea type="text" class="chatinput"></textarea>
-    <button class="close-button">Close</button>
+    <button class="close-button" id="ctabutton">Close</button>
   `;
 
   const closeButton = chatWindow.querySelector('.close-button');
