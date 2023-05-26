@@ -282,6 +282,10 @@ footer {
   margin: 0 auto;
   overflow: hidden;
 }
+
+.carousel {
+  margin-bottom: 100px;
+}
   
 .carousel-container {
   position: relative;
@@ -319,6 +323,14 @@ footer {
 .carousel-item p {
   font-size: 14px;
   margin: 0;
+}
+
+#carouselPrev:hover {
+  background-color: #00e4d1;  
+}
+
+#carouselNext:hover {
+  background-color: #00e4d1;  
 }
   
 .carousel-item a {
@@ -654,7 +666,7 @@ footer {
   grid-template-columns: repeat(3, 1fr);
   margin-top: 100px;
   box-shadow: 0px 0px 9px 0px black inset;
-  margin-bottom: 100px;
+  margin-bottom: 70px;
 }
 
 .show-more-button {
@@ -668,6 +680,7 @@ footer {
   box-shadow: 3px 3px 10px 0px #000000;
   font-family: "Bebas Neue", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin-bottom: 100px;
+  
 }
 
 .showmorecontainer {

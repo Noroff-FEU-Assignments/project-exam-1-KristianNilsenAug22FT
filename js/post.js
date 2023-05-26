@@ -14,7 +14,7 @@ async function fetchPost() {
 }
 
 function renderPost(post) {
-  document.title = post.title.rendered;
+  document.title = "The Boat Blog | Posts | " + post.title.rendered;
 
   const imageUrlMatch = post.content.rendered.match(/src="([^"]+)"/);
   if (imageUrlMatch && imageUrlMatch.length > 1) {
