@@ -7,87 +7,60 @@ const userSubject = document.querySelector("#subject");
 const userSubjectError = document.querySelector("#subjectError");
 const userMessage = document.querySelector("#message");
 const userMessageError = document.querySelector("#messageError");
+const confirmationMessage = document.querySelector("#confirmationMessage");
 
 function validateForm(event) {
   event.preventDefault();
 
-  if (checkLength(userName.value, 4) === true) {
-    userNameError.style.display = "none";
-  } else {
+  let isValid = true;
+
+  if (!checkLength(userName.value, 4)) {
     userNameError.style.display = "block";
+    isValid = false;
+  } else {
+    userNameError.style.display = "none";
   }
 
-  if (validateEmail(userEmail.value) === true) {
-    userEmailError.style.display = "none";
-  } else {
+  if (!validateEmail(userEmail.value)) {
     userEmailError.style.display = "block";
+    isValid = false;
+  } else {
+    userEmailError.style.display = "none";
   }
 
-  if (checkLength(userSubject.value, 14) === true) {
-    userSubjectError.style.display = "none";
-  } else {
+  if (!checkLength(userSubject.value, 14)) {
     userSubjectError.style.display = "block";
-  }
-
-  if (checkLength(userMessage.value, 24) === true) {
-    userMessageError.style.display = "none";
+    isValid = false;
   } else {
-    userMessageError.style.display = "block";
+    userSubjectError.style.display = "none";
   }
 
-  if (
-    checkLength(userName.value, 4) &&
-    validateEmail(userEmail.value) &&
-    checkLength(userSubject.value, 14) &&
-    checkLength(userMessage.value, 24)
-  ) {
-    // Create a new FormData object and append form data
-    const formData = new FormData(form);
-    formData.append("submit", "true");
+  if (!checkLength(userMessage.value, 24)) {
+    userMessageError.style.display = "block";
+    isValid = false;
+  } else {
+    userMessageError.style.display = "none";
+  }
 
-    // Send a POST request to the form action URL
-    fetch(form.action, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        // Handle the response (e.g., show confirmation message, redirect)
-        if (response.ok) {
-          // Show confirmation message
-          const confirmationMessage = document.createElement("p");
-          confirmationMessage.textContent = "Message submitted successfully.";
-          confirmationMessage.classList.add("confirmation-message");
-          form.appendChild(confirmationMessage);
+  if (isValid) {
+    
+    confirmationMessage.style.display = "block";
 
-          // Redirect to the thank you page (replace "thank-you.html" with your desired thank you page URL)
-          window.location.href = "thankyou.html";
-        } else {
-          // Handle error response
-          console.log("Error submitting the form.");
-        }
-      })
-      .catch((error) => {
-        // Handle fetch error
-        console.log("Error submitting the form:", error);
-      });
+   
+    userName.value = "";
+    userEmail.value = "";
+    userSubject.value = "";
+    userMessage.value = "";
   }
 }
-
-  
-
 
 form.addEventListener("submit", validateForm);
 
 function checkLength(value, len) {
-  if (value.trim().length > len) {
-    return true;
-  } else {
-    return false;
-  }
+  return value.trim().length >= len;
 }
 
 function validateEmail(email) {
   const regEx = /\S+@\S+\.\S+/;
-  const patternMatches = regEx.test(email);
-  return patternMatches;
+  return regEx.test(email);
 }
