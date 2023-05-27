@@ -220,6 +220,7 @@ footer {
 }
 
 .menubutton {
+  width: auto;
   max-width: none;
 }
 
