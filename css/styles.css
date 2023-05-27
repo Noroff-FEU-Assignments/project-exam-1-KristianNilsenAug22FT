@@ -219,6 +219,11 @@ footer {
   color: green;
 }
 
+.menubutton {
+  width: 50px;
+}
+
+
 @media (max-width: 800px) {
   .nav-menu {
     display: none;
