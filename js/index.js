@@ -79,13 +79,14 @@ function createPostItem(post) {
   const imageUrl = post.featured_image;
   const altText = post.alt_text;
   const excerpt = post.excerpt.rendered.substring(0, excerptLength) + " [...]";
+  const postTitle = post.title.rendered;
 
   return `
     <div class="post-item">
       <img src="${imageUrl}" alt="${altText}" class="post-image" />
-      <h2>${post.title.rendered}</h2>
+      <h2>${postTitle}</h2>
       <p>${excerpt}</p>
-      <a href="post.html?id=${post.id}" class="readmorebutton">Read More</a>
+      <a href="post.html?id=${post.id}" class="readmorebutton" aria-label="Read More about ${postTitle}">Read More</a>
     </div>
   `;
 }
@@ -96,13 +97,14 @@ function createCarouselItem(post) {
   const imageUrl = post.featured_image;
   const altText = post.alt_text;
   const excerpt = post.excerpt.rendered.substring(0, excerptLength) + " [...]";
+  const postTitle = post.title.rendered;
 
   return `
     <div class="carousel-item">
       <img src="${imageUrl}" alt="${altText}" class="post-image" />
-      <h2>${post.title.rendered}</h2>
+      <h2>${postTitle}</h2>
       <p>${excerpt}</p>
-      <a href="post.html?id=${post.id}" class="readmorebutton">Read More</a>
+      <a href="post.html?id=${post.id}" class="readmorebutton" aria-label="Read More about ${postTitle}">Read More</a>
     </div>
   `;
 }
