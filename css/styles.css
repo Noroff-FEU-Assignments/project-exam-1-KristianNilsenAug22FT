@@ -744,6 +744,7 @@ footer {
   box-shadow: 3px 3px 10px 0px #000000;
   font-family: "Bebas Neue", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin-bottom: 100px;
+  text-align: center;
 }
 
 .show-more-button:active {
