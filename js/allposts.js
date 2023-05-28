@@ -35,28 +35,30 @@ document.addEventListener("DOMContentLoaded", function () {
     function createPostItem(post, imageUrl, altText) {
         const postItem = document.createElement("div");
         postItem.classList.add("post-item");
-
+    
         const postImage = document.createElement("img");
         postImage.src = imageUrl;
         postImage.alt = altText;
         postItem.appendChild(postImage);
-      
+    
         const postTitle = document.createElement("h2");
         postTitle.textContent = post.title.rendered;
         postItem.appendChild(postTitle);
-      
+    
         const postExcerpt = document.createElement("div");
         const excerptLength = 100;
-        const shortenedExcerpt = post.excerpt.rendered.substring(0, excerptLength) + " [...]";
-        postExcerpt.textContent = shortenedExcerpt;
+        const tempElement = document.createElement("div");
+        tempElement.innerHTML = post.excerpt.rendered;
+        const plainTextExcerpt = tempElement.innerText.substring(0, excerptLength) + " [...]";
+        postExcerpt.textContent = plainTextExcerpt;
         postItem.appendChild(postExcerpt);
-      
+    
         const readMoreLink = document.createElement("a");
         readMoreLink.classList.add("readmorebutton");
         readMoreLink.href = `post.html?id=${post.id}`;
         readMoreLink.textContent = "Read More";
         postItem.appendChild(readMoreLink);
-      
+    
         return postItem;
     }
   
