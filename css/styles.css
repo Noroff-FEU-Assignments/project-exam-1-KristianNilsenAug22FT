@@ -1,9 +1,12 @@
 
-
 /* Reused CSS (Same on all pages) */
 
 body {
   font-family: "Bebas Neue", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body a {
+  text-decoration: none;
 }
 
 .menu-bar {
@@ -278,15 +281,29 @@ footer {
 
 /* Index page */
 
+.indexbackground {
+  background-image: url(/images/indexcontent.jpg);
+  background-size: cover;
+  top: -100px;
+  padding-bottom: 20px;
+  box-shadow: 0px 0px 7px 0px black inset;
+}
+
 .loading-text {
   font-size: 60px;
   margin-top: 50px;
 }
 
 #indexContent {
-  padding-top: 80px;
+  padding-top: 40px;
   max-width: 900px;
   margin: auto;
+  background-color: #ffffff;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-shadow: 0px 0px 7px 0px black;
+  opacity: 80%;
 }
 
 #indexContent p {
@@ -305,7 +322,7 @@ footer {
 }
 
 .carousel {
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
   
 .carousel-container {
@@ -334,6 +351,10 @@ footer {
 }
 
 .carousel-arrow:hover {
+  box-shadow: 0px 0px 16px 0px #000000
+}
+
+.carousel-arrow:active {
   box-shadow: 0px 0px 6px 0px #000000 inset;
 }
   
@@ -396,20 +417,45 @@ footer {
   height: auto;
   margin-bottom: 10px;
 }
-  
- @media (max-width: 1120px) {
 
+.postcontainer-title {
+  display: none;
+}
+
+#gotoall {
+  display: none;
+}
+
+
+
+@media (max-width: 633px) {
+  .indexbackground {
+    padding-bottom: 0px;
+  }
+}
+  
+@media (max-width: 1120px) {
+  
   #indexContent {
     max-width: 665px;
-    
   }
 
   .carousel-container {
     width: 665px;
-
   }
 
  @media (max-width: 937px) {
+
+  .postcontainer-title {
+    display: block;
+    text-align: center;
+  }
+
+  #gotoall {
+    display: block;
+    margin: auto;
+    margin-bottom: 60px;
+  }
       
   .carousel {
     display: none;
@@ -644,40 +690,29 @@ footer {
   padding-top: 50px;
   max-width: 900px;
   margin: auto;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 6px 0px #000000;
+  padding-bottom: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  opacity: 90%;
 }
 
 #aboutContent p {
   font-size: 20px;
 }
 
-.aboutimage {
+
+.aboutback {
   background-image: url(../images/aboutimage.jpg);
-  margin-top: 20px;
-  width: 100%;
-  height: 100%;
   background-size: cover;
-  box-shadow: 1px 1px 10px 0px #000000 inset;
-}
-
-.aboutbackground {
-  width: 100%;
-  height: 340px;
-
-}
-
-@media (max-width: 875px) {
-  .aboutimage {
-    height: 250px;
-  }
+  background-repeat: no-repeat;
+  min-height: 940px;
+  max-height: 800px;
+  box-shadow: 0px 0px 6px 0px #000000 inset;
 }
 
 @media (max-width: 440px) {
-  .aboutimage {
-    height: 250px;
-    width: auto;
-    background-position: center;
-  }
-
   #aboutContent p {
     font-size: 15px;
   }
@@ -707,7 +742,14 @@ footer {
   box-shadow: 3px 3px 10px 0px #000000;
   font-family: "Bebas Neue", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin-bottom: 100px;
-  
+}
+
+.show-more-button:active {
+  box-shadow: 3px 3px 10px 0px #000000 inset;
+}
+
+.show-more-button:hover {
+  background-color: #00e4d1;
 }
 
 .showmorecontainer {

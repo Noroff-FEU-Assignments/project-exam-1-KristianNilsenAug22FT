@@ -16,8 +16,8 @@ async function fetchPageContent() {
 }
 
 let currentPosition = 0;
-const slideWidth = 900;
-const slidesToShow = 4;
+let slideWidth;
+let slidesToShow;
 const excerptLength = 100;
 
 async function fetchPosts() {
@@ -29,7 +29,6 @@ async function fetchPosts() {
       let imageUrl = '';
       let altText = '';
 
-      // Check if the post has a featured image
       if (post._embedded['wp:featuredmedia']) {
         const media = post._embedded['wp:featuredmedia'][0];
         imageUrl = media.source_url;
@@ -40,6 +39,8 @@ async function fetchPosts() {
     });
 
     renderPosts(updatedPosts);
+    adjustCarouselForViewport();
+    window.addEventListener('resize', adjustCarouselForViewport);
   } catch (error) {
     console.error('Error fetching posts:', error);
   }
@@ -106,43 +107,48 @@ function createCarouselItem(post) {
   `;
 }
 
-function extractImageUrl(content) {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(content, 'text/html');
-  const imageElement = doc.querySelector('img');
-  return imageElement ? imageElement.getAttribute('src') : '';
-}
-
-function extractAltText(content) {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(content, 'text/html');
-  const imageElement = doc.querySelector('img');
-  return imageElement ? imageElement.getAttribute('alt') : '';
-}
-
 function addEventListeners(posts) {
   prevButton.addEventListener('click', () => moveCarousel('prev', posts));
   nextButton.addEventListener('click', () => moveCarousel('next', posts));
 }
 
-function moveCarousel(direction, posts) {
-  const totalSlides = posts.length;
-  const slidesPerPage = slidesToShow;
-  const maxPosition = Math.max(totalSlides);
-  const increment = direction === 'prev' ? -2 : 2;
-
-  currentPosition += increment;
-
-  if (currentPosition < 0) {
-    currentPosition = maxPosition;
-  } else if (currentPosition > maxPosition) {
-    currentPosition = 0;
+function adjustCarouselForViewport() {
+  if (window.innerWidth < 1120) {
+    slidesToShow = 3;
+  } else {
+    slidesToShow = 4;
   }
 
-  const translateX = -currentPosition * (slideWidth / slidesToShow);
-  carouselTrack.style.transform = `translateX(${translateX}px)`;
+  slideWidth = carouselContainer.offsetWidth / slidesToShow;
+  const totalSlides = carouselTrack.querySelectorAll('.carousel-item').length;
+
+  carouselTrack.style.width = `${slideWidth * totalSlides}px`;
+
+  const carouselItems = carouselTrack.querySelectorAll('.carousel-item');
+  carouselItems.forEach((item) => {
+    item.style.width = `${slideWidth}px`;
+  });
 }
 
+function moveCarousel(direction) {
+  const totalSlides = carouselTrack.querySelectorAll('.carousel-item').length;
+  const totalSets = Math.ceil(totalSlides / slidesToShow); 
+  const increment = direction === 'prev' ? -1 : 1;
+
+  let currentSet = Math.floor(currentPosition / slidesToShow); 
+  currentSet += increment;
+
+  if (currentSet < 0) {
+    currentSet = totalSets - 1;
+  } else if (currentSet >= totalSets) {
+    currentSet = 0;
+  }
+
+  currentPosition = currentSet * slidesToShow; 
+
+  const translateX = -currentPosition * slideWidth;
+  carouselTrack.style.transform = `translateX(${translateX}px)`;
+}
 
 
 fetchPosts()
