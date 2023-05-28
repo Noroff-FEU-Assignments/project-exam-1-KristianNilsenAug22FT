@@ -15,7 +15,6 @@ body a {
   left: 0;
   width: 100%;
   background-color: #001bb3;
-  border: black;
   box-shadow: 0px 0px 6px 0px black;
   z-index: 100;
   text-transform: uppercase;
@@ -202,7 +201,6 @@ footer {
   text-decoration: none;
   font-size: 14px;
   margin-top: auto;
-  border: black;
   box-shadow: 0px 0px 2px 0px black;
   border-radius: 5%;
   margin-bottom: 50px;
@@ -210,11 +208,6 @@ footer {
 
 .readmorebutton:hover {
   box-shadow: 0px 0px 6px 0px #ffffff inset;
-}
-
-.input-error {
-  display: none;
-  color: red;
 }
 
 .confirmation-message {
@@ -444,7 +437,7 @@ footer {
     width: 665px;
   }
 
- @media (max-width: 937px) {
+@media (max-width: 937px) {
 
   .postcontainer-title {
     display: block;

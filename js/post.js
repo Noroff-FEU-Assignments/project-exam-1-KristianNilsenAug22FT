@@ -14,7 +14,7 @@ async function fetchPost() {
       const mediaResponse = await fetch(`https://norwegiantechie.icu/wp-json/wp/v2/media/${post.featured_media}`);
       const media = await mediaResponse.json();
       featuredImage = media.source_url;
-      altText = media.alt_text; // fetching the alt text from media JSON
+      altText = media.alt_text;
     }
 
     renderPost(post, featuredImage, altText);
@@ -43,12 +43,6 @@ function renderPost(post, imageUrl, altText) {
   contentElement.innerHTML = post.content.rendered;
   postContent.appendChild(contentElement);
 }
-
-
-
-
-
-  
 
   function openModal(imageUrl, altText) {
     modal.style.display = 'block';
