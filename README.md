@@ -1,34 +1,66 @@
-## Project Exam 1
+# The Boating Blog
+
+![theboatblog](https://github.com/Noroff-FEU-Assignments/project-exam-1-KristianNilsenAug22FT/assets/114563561/3458a0b5-08bf-4f35-b2b0-4f0835d57ae0)
+
+The Boating Blog is a my project exam for my first year studying FrontEnd development at Noroff.
+The site is a place for people interested in boats can read about a wide range of boats.
+It uses JS and WordPress to fetch content and is focused around HTML,CSS and JS.
 
 ## Description
 
-The task was to make a blog site. I created a blog site about boats.
-I spent most of the allocated time on coding. The design part of the process was the second 
-most time consuming part.
-I found this exam task very fun and engaging. However, I find the study content and the way 
-the study is set up a bit lacking. So, I had to turn to YouTube/internet more than not to find 
-answers to my more complex questions, like I have had to do throughout this study. 
-Then again this made the project more advanced than I had initially imagined, which in turn 
-made it more fun.
-All photos used on the site are my own photos, which is a decision I made early in the 
-process, to avoid copyright infringement or any other problems related to that
+"The Boating Blog" is a dedicated platform that serves as a rich resource for boating enthusiasts. 
+This blog immerses readers in the captivating world of boats, offering a mix of insightful narratives, 
+expert advice, and a detailed exploration of the boating lifestyle. 
+Its mission is to cultivate a deep appreciation for boating and instill a sense of adventure in its readers.
+
+The Boating Blog aims to:
+
+- Provide a dynamic platform that encapsulates the enthralling world of boating through engaging stories and professional guidance, targeting both seasoned mariners and curious newcomers.
+- Highlight the craftsmanship and tradition behind boat construction, inspiring respect and admiration for this intricate art form.
+- Foster a vibrant community of boating enthusiasts, encouraging the shared thrill of navigation and the spirit of exploration.
+
+## Built With
+
+- HTML
+- CSS
+- JS
+- WordPress
+
+## Software used
+
+- Figma
+- Visual Studio Code
+- WordPress (Headless)
+- Hotjar
+
+## Getting Stared
+
+### Installing
+
+Live site https://luxury-lolly-e07c4c.netlify.app
 
 
-## Deployed site
-https://luxury-lolly-e07c4c.netlify.app/
+1. Clone the repo:
 
-### This Github
-https://github.com/Noroff-FEU-Assignments/project-exam-1-KristianNilsenAug22FT
+```bash
+git clone git@github.com:Noroff-FEU-Assignments/project-exam-1-KristianNilsenAUG22FT.git
+```
 
-### Remote host
+### Running
 
-http://norwegiantechie.icu (Wordpress)
+To run the app, run the following commands:
 
-### References
+```bash
+npm run start
+```
 
+## Contributing
 
-• Stackoverflow.com
-• WordPress Handbooks
-• Youtube.com
-• W3Schools.com
-• Friends and family
+Any questions or contributions are welcome. I will be happy to answer all questions and consider all contributions.
+You can find my contact info below.
+
+## Contact
+
+[My email](mailto:nilsenkr@pm.me)
+
+[My GitHub](https://github.com/KristianNilsenAug22FT)
